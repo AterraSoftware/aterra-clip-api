@@ -16,11 +16,6 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 # Installer PyTorch CPU
 RUN pip install --index-url https://download.pytorch.org/whl/cpu torch==2.3.1+cpu torchvision==0.18.1+cpu
 
-# Précharger le modèle CLIP pour éviter les timeouts
-RUN python -c "from transformers import CLIPModel, CLIPProcessor; \
-    CLIPModel.from_pretrained('openai/clip-vit-base-patch32'); \
-    CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')"
-
 # Copier le code de l'application
 COPY main.py .
 
